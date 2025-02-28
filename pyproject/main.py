@@ -35,14 +35,6 @@ def login_required(f):
 
     return decorated_function
 
-@app.route('/toggle_theme')
-def toggle_theme():
-    # Get the current theme, default to 'light'
-    current_theme = session.get('theme', 'light')
-    # Toggle between 'light' and 'dark'
-    session['theme'] = 'dark' if current_theme == 'light' else 'light'
-    # Redirect back to the page the user came from, or index if not available
-    return redirect(request.referrer or url_for('index'))
     #main page
 
 @app.route('/')
