@@ -1,0 +1,10 @@
+.bar{
+  width: 100%;
+  height: 40px;
+  background-color: #e6c653;
+  text-align: center;
+  color: white;
+  font-weight:bold;
+  font-family: Times New Roman;
+  line-height: 40px;
+}
