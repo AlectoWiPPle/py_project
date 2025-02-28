@@ -3,25 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>To Do List</title>
-    <style>
-        .progress-container {
-            width: 100%;
-            background-color: #f3f3f3;
-            border: 1px solid #ccc;
-            margin-bottom: 20px;
-        }
-        .progress-bar {
-            width: {{ percent_complete }}%;
-            height: 40px;
-            background-color: #e6c653;
-            text-align: center;
-            color: white;
-            font-weight:bold;
-            font-family: Times New Roman;
-            line-height: 40px;
-        }
-        .completed {
-            text-decoration: line-through;
+    <link rel="stylesheet" href="/static/style.css">
+    <style>.progress-bar {
+      width: {{ percent_complete }}%;
         }
     </style>
     </head>
@@ -32,12 +16,12 @@
     </div>
     <h1>Your Tasks</h1>
     <form action="{{ url_for('add_task') }}" method="post">
-        <input type="text" name="content" required placeholder="Введите задачу">
+        <input type="text" name="content" required placeholder="Input task">
         <button type="submit">Add Task</button>
     </form>
     <ul>
         {% for task in tasks %}
-            <li>
+            <li class="{% if task.completed %}completed{% endif %}">
                 {% if task.completed == 1 %}
                     <span class="completed">{{ task.content }}</span>
                 {% else %}

@@ -61,7 +61,7 @@ def index():
         return redirect(url_for('login'))
     clear_old_completed_tasks(user_id)
     conn = get_db_connection()
-    tasks = conn.execute('SELECT * FROM tasks WHERE user_id = ?', (session['user_id'],)).fetchall()
+    tasks = conn.execute('SELECT * FROM tasks WHERE user_id = ? ORDER BY completed ASC, id DESC', (session['user_id'],)).fetchall() # tasks are sorted by completed, then by id
     conn.close()
     
     tasks_list = [dict(task) for task in tasks]
