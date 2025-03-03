@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, flash, render_template, request, redirect, url_for, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from datetime import date
@@ -73,7 +73,7 @@ def index():
     percent_complete = (completed_count / total_tasks) * 100 if total_tasks > 0 else 0
     return render_template('index.html', tasks=tasks_list, percent_complete=int(percent_complete))
 
-# Login route
+#register route
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -86,7 +86,7 @@ def register():
             conn.commit()
             return redirect(url_for('login'))
         except sqlite3.IntegrityError: # username already exists
-            Warning(f"Username '{username}' already exists")
+            flash('This user alredy exists')
         finally:
             conn.close()
     return render_template('register.html')
@@ -103,7 +103,7 @@ def login():
             session['user_id'] = user['id']
 
             return redirect(url_for('index'))
-
+        flash('Invalid username or password')
     return render_template('login.html')
 
 @app.route('/logout')

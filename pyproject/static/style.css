@@ -42,3 +42,12 @@ li.completed {
   background: gray;
   
 }
+.error {
+  color: red;
+}
+input {
+  align-content: center;
+}
+button {
+  align-self: center;
+}

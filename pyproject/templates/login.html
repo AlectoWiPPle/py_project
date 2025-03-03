@@ -4,6 +4,37 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="/static/style.css">
+    <style>
+          form{  
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+          }
+        input{
+            height: 30px;
+            width: 200px;
+            margin-top: 15px;
+        }
+        button{
+            font-size: 20px;
+            height: 30px;
+            width: 200px;
+            margin-top: 15px;
+        }
+        a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 15px;
+        }
+        h5{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+
+        }
+    </style>
 </head>
 <body>
     <h1 class = "bar">Login</h1>
@@ -13,6 +44,16 @@
         <input type="password" name="password" placeholder="Password" required>
         <button type="submit">Login</button>
     </form>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+          <h5 class = "error">{{ message }}</h5>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
     <a href="{{ url_for('register') }}">Don't have an account? Register</a>
 </body>
 </html>
